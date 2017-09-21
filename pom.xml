@@ -1,0 +1,69 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.horasphere</groupId>
+	<artifactId>websocket-test</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
+  
+	<properties>
+        <java.version>1.7</java.version>
+        <tomcat.version>7.0.59</tomcat.version>
+    </properties>
+    
+  	<parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.5.7.RELEASE</version>
+	</parent>
+  
+  	<dependencies>
+		<dependency>
+			  <groupId>org.apache.tomcat</groupId>
+			  <artifactId>tomcat-util</artifactId>
+			  <scope>runtime</scope>
+	          <version>7.0.59</version>
+		</dependency>  	
+		
+	  	<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-websocket</artifactId>
+        </dependency>		
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<scope>provided</scope>
+		</dependency>        
+	</dependencies>
+    
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<version>2.0</version>
+				<configuration>
+					<systemProperties>
+						<JAVA_OPTS>-XX:MaxPermSize=1024m</JAVA_OPTS>
+					</systemProperties>
+	          		<path>/${project.build.finalName}</path>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-war-plugin</artifactId>
+				<configuration>
+					<failOnMissingWebXml>false</failOnMissingWebXml>
+					<warName>wstest</warName>
+				</configuration>
+			</plugin>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>			
+		</plugins>
+	</build>
+	
+</project>
